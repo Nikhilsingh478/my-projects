@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Project Showcase Cube</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        #loader {
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            background-color: black;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loader h1 {
+            color: transparent;
+            font-size: 4vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("./images/bgimg.jpg");
+            background-position: center;
+            -webkit-background-clip: text;
+            position: absolute;
+            opacity: 0;
+            animation: load 1.5s linear;
+            animation-delay: 1s;
+        }
+
+        #loader h1:nth-child(2) {
+            animation-delay: 2.5s;
+        }
+
+        #loader h1:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        @keyframes load {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Scene Container */
+        .scene {
+            perspective: 1000px;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            display: flex; /* Centering the cube */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cube Styling */
+        .cube {
+            width: 250px;  /* Adjusted for mobile */
+            height: 250px; /* Adjusted for mobile */
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg) rotateY(-30deg);
+            transition: transform 0.5s ease-in-out;
+            background-color: transparent; /* Make cube transparent */
+        }
+
+        /* Cube Faces */
+        .cube-face {
+            position: absolute;
+            width: 250px;  /* Adjusted for mobile */
+            height: 250px; /* Adjusted for mobile */
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Initial Glow Effect */
+            transition: box-shadow 0.3s ease-in-out;
+            background-color: black; /* Each face background is black */
+        }
+
+        .cube-face:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Enhanced Glow on Hover */
+        }
+
+        .cube-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover ensures the image fills the face */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, opacity 0.3s;
+            display: block;
+        }
+
+        .cube-face img:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* Positioning Each Face */
+        .cube-face-front  { transform: rotateY(  0deg) translateZ(125px); }
+        .cube-face-back   { transform: rotateY(180deg) translateZ(125px); }
+        .cube-face-right  { transform: rotateY( 90deg) translateZ(125px); }
+        .cube-face-left   { transform: rotateY(-90deg) translateZ(125px); }
+        .cube-face-top    { transform: rotateX( 90deg) translateZ(125px); }
+        .cube-face-bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+        /* Instructions Styling */
+        .instructions {
+            margin-top: 20px;  /* Reduced margin for mobile */
+            text-align: center;
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <h1 id="first">hey there</h1>
+        <h1 id="second">this is Nikhil</h1>
+        <h1 id="third">welcome to my projects</h1>
+    </div>
+
+    <div class="scene">
+        <div class="cube" id="cube">
+            <div class="cube-face cube-face-front">
+                <img src="images/project1.jpg" alt="Project 1" data-url="https://gooey-effect.vercel.app/">
+            </div>
+            <div class="cube-face cube-face-back">
+                <img src="images/project2.jpg" alt="Project 2" data-url="https://huuman.vercel.app/">
+            </div>
+            <div class="cube-face cube-face-right">
+                <img src="images/project3.jpg" alt="Project 3" data-url="https://god-of-war-blond.vercel.app/">
+            </div>
+            <div class="cube-face cube-face-left">
+                <img src="images/project4.jpg" alt="Project 4" data-url="https://halloween-two-rho.vercel.app/">
+            </div>
+            <div class="cube-face cube-face-top">
+                <img src="images/project5.jpg" alt="Project 5" data-url="https://holi-parallax-by-nvs.vercel.app/">
+            </div>
+            <div class="cube-face cube-face-bottom">
+                <img src="images/project6.jpg" alt="Project 6" data-url="https://main-repo-eta.vercel.app/">
+            </div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <p>Double-click on a face to view the project. Swipe to rotate the cube.</p>
+    </div>
+
+    <script>
+    // Select the cube element
+    const cube = document.getElementById('cube');
+
+    // Initialize rotation angles
+    let rotX = -30;
+    let rotY = -30;
+
+    // Variables to track dragging state
+    let isDragging = false;
+    let startX, startY;
+
+    // Function to handle the start of dragging (for both mouse and touch)
+    function startDrag(clientX, clientY) {
+        isDragging = true;
+        startX = clientX;
+        startY = clientY;
+        cube.style.transition = 'none'; // Remove transition for smooth dragging
+    }
+
+    // Function to handle dragging movement (for both mouse and touch)
+    function duringDrag(clientX, clientY) {
+        if (isDragging) {
+            const deltaX = clientX - startX;
+            const deltaY = clientY - startY;
+            rotY += deltaX * 0.5; // Adjust rotation sensitivity as needed
+            rotX -= deltaY * 0.5;
+            cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            startX = clientX;
+            startY = clientY;
+        }
+    }
+
+    // Function to handle the end of dragging (for both mouse and touch)
+    function endDrag() {
+        if (isDragging) {
+            isDragging = false;
+            cube.style.transition = 'transform 0.5s ease-in-out'; // Re-add transition for smooth rotation
+        }
+    }
+
+    // Mouse Events for Desktop
+    cube.addEventListener('mousedown', (e) => {
+        startDrag(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            duringDrag(e.clientX, e.clientY);
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        endDrag();
+    });
+
+    // Touch Events for Mobile Devices
+    cube.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        duringDrag(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('touchend', () => {
+        endDrag();
+    });
+
+    // Prevent image dragging and handle double-click redirect
+    const images = document.querySelectorAll('.cube-face img');
+    images.forEach(img => {
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+
+        img.addEventListener('dblclick', () => {
+            const url = img.getAttribute('data-url');
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    });
+
+    var loader = document.querySelector("#loader");
+    setTimeout(() => {
+        loader.style.top = "-100%";
+    }, 5500);
+</script>
+
+</body>
+</html>
