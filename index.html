@@ -276,13 +276,14 @@
     var loader = document.querySelector("#loader");
     setTimeout(() => {
         loader.style.top = "-100%";
+    }, 5500);
 
-        gsap.to(".instructions", { 
+         gsap.to(".instructions", { 
+             delay: 5.5,
             opacity: 1, 
             duration: 1.5, 
             ease: "power2.out" 
         });
-    }, 5500);
 </script>
 
 </body>
