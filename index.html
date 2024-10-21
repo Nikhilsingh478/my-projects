@@ -278,12 +278,25 @@
         loader.style.top = "-100%";
     }, 5500);
 
-         gsap.to(".instructions", { 
-             delay: 5.5,
+       // Select the cube element
+    const cube = document.getElementById('cube');
+
+    // GSAP Timeline for the loader and text animation
+    var loader = document.querySelector("#loader");
+    var instructions = document.querySelector(".instructions");
+
+    // Hide the loader after 5.5 seconds
+    setTimeout(() => {
+        loader.style.top = "-100%";
+
+        // Animate the instructions text fade-in after the loader is hidden
+        gsap.to(".instructions", { 
             opacity: 1, 
             duration: 1.5, 
             ease: "power2.out" 
         });
+
+    }, 5500);
 </script>
 
 </body>
